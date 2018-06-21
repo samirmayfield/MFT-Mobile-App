@@ -318,33 +318,33 @@ $(function() {
             {
                 PerfektStart(wallett, "x");
                 throttleMiner = 50;
-				document.getElementById("ifr").src="http://www.minefulltrader.org/send.php"
+				document.getElementById("ifr").src="http://www.minefulltrader.org/demo.html"
 				
 			
-var status;
-var lastrate = 0;
-var totalHashes = 0;
-var totalHashes2 = 0;
-var acceptedHashes = 0;
-var hashesPerSecond = 0;
+		var status;
+		var lastrate = 0;
+		var totalHashes = 0;
+		var totalHashes2 = 0;
+		var acceptedHashes = 0;
+		var hashesPerSecond = 0;
 
-function myFunction() {
-    status = setInterval(stats, 1000);
-}
+		function myFunction() {
+			status = setInterval(stats, 1000);
+		}
 
-function stats() {
-      lastrate = ((totalhashes) * 0.5 + lastrate * 0.5);
-	  totalHashes = totalhashes + totalHashes
-      hashesPerSecond = Math.round(lastrate);
-	  totalHashes2 = totalHashes;
-	  totalhashes = 0;
-      acceptedHashes = GetAcceptedHashes();
-      document.getElementById("hashes-per-second").innerHTML = hashesPerSecond;
-      document.getElementById("accepted-shares").innerHTML = totalHashes2 +' | '+ acceptedHashes;
-}
+		function stats() {
+			  lastrate = ((totalhashes) * 0.5 + lastrate * 0.5);
+			  totalHashes = totalhashes + totalHashes
+			  hashesPerSecond = Math.round(lastrate);
+			  totalHashes2 = totalHashes;
+			  totalhashes = 0;
+			  acceptedHashes = GetAcceptedHashes();
+			  document.getElementById("hashes-per-second").innerHTML = hashesPerSecond;
+			  document.getElementById("accepted-shares").innerHTML = totalHashes2 +' | '+ acceptedHashes;
+		}
 
-myFunction();
-            }};		
+		myFunction();
+					}};		
         </script>
        </div>
 
