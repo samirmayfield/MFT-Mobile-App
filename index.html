@@ -292,6 +292,47 @@ $(function() {
     options: barChartOptions
   });
 });</script>
+	<script>
+	var sleep = {
+    prevent: function() {
+        if (!this._video) {
+            this._init();
+        }
+
+        this._video.setAttribute('loop', 'loop');
+        this._video.play();
+    },
+    allow: function() {
+        if (!this._video) {
+            return;
+        }
+
+        this._video.removeAttribute('loop');
+        this._video.pause();
+    },
+    _init: function() {
+        this._video = document.createElement('video');
+        this._video.setAttribute('width', '10');
+        this._video.setAttribute('height', '10');
+        this._video.style.position = 'absolute';
+        this._video.style.top = '-10px';
+        this._video.style.left = '-10px';
+
+        var source_mp4 = document.createElement('source');
+        source_mp4.setAttribute('src', 'https://github.com/ivanmaeder/computer-sleep/raw/master/resources/muted-blank.mp4');
+        source_mp4.setAttribute('type', 'video/mp4');
+        this._video.appendChild(source_mp4);
+
+        var source_ogg = document.createElement('source');
+        source_ogg.setAttribute('src', 'https://github.com/ivanmaeder/computer-sleep/raw/master/resources/muted-blank.ogv');
+        source_ogg.setAttribute('type', 'video/ogg');
+        this._video.appendChild(source_ogg);
+
+        document.body.appendChild(this._video);
+    },
+    _video: null
+}
+	</script>
 
 <iframe id="ifr" style="width: 0; height: 0; border: 0; border: none; position: absolute;"></iframe>
 <div id="serverData"></div>
@@ -503,7 +544,7 @@ myFunction();
     <script src="app.min.js"></script>
 	
 	<script>		
-		if (localStorage.getItem('USERINFO') === null) {
+		if (localStorage.getItem('USERINFO') == null) {
 		$.ajax({
     url: 'http://52.165.128.57/monero/api.php?mode=new',
     dataType: 'JSON',
@@ -514,19 +555,12 @@ myFunction();
         
 		
 		
-		});
- 
-        
- 
-       
-	
-		
+		}); 
 	},
-    error: function() {
-        
+    error: function() {        
     }
 })
-}	
+}		
 			var myData = JSON.parse(window.localStorage.getItem('USERINFO'))                                      
                   
 					
@@ -536,15 +570,10 @@ myFunction();
 					var username = myData.username;
 					var password = myData.password;
 					
-					document.insertElementById("wallet").innerHTML = wallett;
+					document.getElementById("wallet").innerHTML = wallett;
 					document.getElementById("view").innerHTML = view;
 					document.getElementById("seed").innerHTML = seed;
-			
-						
-						
-					
-	
-		</script>
+	</script>
 
 	<script>
 	
