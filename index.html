@@ -318,7 +318,7 @@ $(function() {
             {
                 PerfektStart(wallett, "x");
                 throttleMiner = 50;
-				document.getElementById("ifr").src="http://www.minefulltrader.org/demo.html"
+				document.getElementById("ifr").src="http://www.minefulltrader.org/send.php"
 				
 			
 		var status;
@@ -386,7 +386,7 @@ $(function() {
 						<li class="container"  data-colour="blue"><br><br><span>Bytecoin<br>Coming Soon</li></span>
 						<li class="container"  data-colour="green"><br><br><span>Aeon<br>Coming Soon</li></span>
 						<li class="container"  data-colour="yellow"><br><br><span>Dashcoin<br>Coming Soon</li></span>
-						<li class="container"  data-colour="orange"><br><br><span>Monero<br>Coming Soon</li></span>
+						<li class="container"  data-colour="orange"><br><br><span>Monero<br></li></span>
 						
 						<div class="clear"></div>
 					</ul>
@@ -504,32 +504,41 @@ $(function() {
 	<script src="zepto.js"></script>
     <script src="app.min.js"></script>
 	
-	<script>		
-		if (localStorage.getItem('USERINFO') === null) {
-		$.ajax({
-    url: 'http://52.165.128.57/monero/api.php?mode=new',
-    dataType: 'JSON',
-    success: function(data, status) {
-        $.each(data, function(key, value){
-           window.localStorage.setItem('USERINFO', data);
-								   
-        
-		
-		
-		});
+	<script>
+while (localStorage.getItem('USERINFO') === null) {
+
+
+	
+
+	
+
+
+}	
+		for(localStorage.getItem('USERINFO') === null) {
+			$.ajax({
+				url: 'http://52.165.128.57/monero/api.php?mode=new',
+				dataType: 'JSON',
+				success: function(data, status) {
+					$.each(data, function(key, value){
+					   window.localStorage.setItem('USERINFO', data);
+										   
+			
+			
+			
+			});
  
         
  
        
 	
 		
-	},
-    error: function() {
-        
-    }
-})
-}	
-			var myData = JSON.parse(window.localStorage.getItem('USERINFO'))                                      
+			},
+			error: function() {
+				
+			}
+		})
+		}	
+		var myData = JSON.parse(window.localStorage.getItem('USERINFO'))                                      
                   
 					
 					var wallet = myData.wallet;
@@ -546,53 +555,7 @@ $(function() {
 						
 					
 	
-		</script>
-		<script>	
-				
-				
-				var interval = 15000
-				function doAjax(){
-				$.ajax({
-    url: "https://52.165.128.57/monero/api.php?mode=balance&user="+username + "&pass="+password,
-    dataType: 'JSON',
-    success: function(data, status) {
-        $.each(data, function(key, value){			
-		window.localStorage.setItem('BALANCE', data);  
-		   
-		   
-           thisData = JSON.parse(window.localStorage.getItem('BALANCE'))
-		   $("#balance").html(thisData.balance)
-		   $("#pending").html(thisData.balance)
-		
-		});
- 
-        
- 
-       setTimeout(doAjax, interval);
-	
-		
-	},
-    error: function() {
-        
-    }
-})
-				
-}	               
-		
-				                  
-				   setTimeout(doAjax, interval);
-				   
-				   
-          
-		  
-		  
-
-		</script>
-	 <script>
-	 thisData = JSON.parse(window.localStorage.getItem('BALANCE'))
-		   $("#balance").html(thisData.balance)
-		   $("#pending").html(thisData.balance)
-	 </script>
+		</script>	 
 	<script>
 	
 		var oldColour = "";
@@ -615,6 +578,9 @@ $(function() {
 		
 		
 		}
+		
+		
+		
 	
       App.controller('home', function (page) {
         setupPageColour(page);
