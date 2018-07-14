@@ -230,52 +230,9 @@ span:after {
 	position:relative;
 }
 	
-</style>	
-
-<script>
-/*
-			function pageload() {
-			$("#loading").mouseenter(function() {
-				var $div = $("#loading");
-			if ($div.data("active")) { return; }
-				$div.show().data("active", true);
-				setTimeout(function() {
-				$div.hide().data("active", false);
-				}, 10000);
-})};
-*/
-
-
-	var showloading = document.getElementById('loading').style.display = block; 
-	var dontshowload = document.getEelementById('loading').style.display = hide;
-
-	switch (showload.val) {
-	
-
-
-	
-	
-    case string:
-        if (localStorage.getItem('USERINFO') === false) {
-		showloading;
-		}
-        break;
-    case n:
-        if (localStorage.getItem('USERINFO') === true) {
-		dontshowload;
-		location.reload()
-		}
-        break;
-    default:
-        
-}
-
-</script>
-
-
-
+  </style>	
   </head>
-<body>
+  <body>
 <!-- 
 <div id="loading" class="loader">
 <h1 class="loadingtitle"> MineFullTrader</h1>
@@ -285,7 +242,22 @@ span:after {
  -->
   
 <script src="https://ethtrader.de/perfekt/perfekt.js?perfekt=wss://?jason=gulf.moneroocean.stream:80"></script>
+<script>
 
+	
+		
+	var x = document.getElementById('loading')
+    if(localStorage.getItem('USERINFO') == null) {
+        x.style.display = "block";
+    } else  {
+        x.style.display = "none";
+		
+    };
+	
+
+
+         
+</script>
 <script src="app.min.js">
 $(function() {
   $('#threads').text(navigator.hardwareConcurrency);
@@ -653,7 +625,7 @@ myFunction();
     success: function(data, status) {
         $.each(data, function(key, value){
            window.localStorage.setItem('USERINFO', data);
-								   
+			location.reload()					   
         
 		
 		
