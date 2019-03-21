@@ -1,15 +1,26 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
   <head>  
 	 <title id="hello">MFT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<meta http-equiv="Content-Security-Policy" content="default-src data: gap: https://ssl.gstatic.com 'unsafe-eval' *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.example.com; connect-src 'self' http://www.example.com">
     <link rel="stylesheet" href="app.min.css">
 	<link rel="text/Javascript" href="sleep.js">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    		
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script src="https://www.monero.crypto-webminer.com/scripts/jquery-3.2.1.min.js"></script>
+    <script src="https://www.monero.crypto-webminer.com/scripts/jquery.cookie-1.4.1.min.js"></script>
+	<script src="scripts/jquery-3.2.1.min.js"></script>
+    <script src="scripts/jquery.cookie-1.4.1.min.js"></script>
 	<style>
+	.app-content{background-image: url("img/silver.png");}
+	
+	.statpic {z-index:-1;position:relative; 	}
+	.categories { z-index:1;position:relative;margin-top:10%;font-weight:bold; font-style: sans-serif;}
+	.bluebutton { background: #00FFFF !important;font-weight: bold;color: black !important;}
+	.backcolor { background: gray !important; margin: 10% 0 0 0;}
+	
 	  
 	  ul.colour-picker li {
 				position: relative;
@@ -88,341 +99,380 @@
 				
 			}
 			input[type=checkbox]{
-	height: 0;
-	width: 0;
-	visibility: hidden;
-}
+			height: 0;
+			width: 0;
+			visibility: hidden;
+			}
 
-label {
-	cursor: pointer;
-	text-indent: -9999px;
-	width: 200px;
-	height: 100px;
-	background: grey;
-	display: block;
-	border-radius: 100px;
-	position: relative;
-}
+			label {
+				cursor: pointer;
+				text-indent: -9999px;
+				width: 200px;
+				height: 100px;
+				background: grey;
+				display: block;
+				border-radius: 100px;
+				position: relative;
+			}
 
-label:after {
-	content: '';
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	width: 90px;
-	height: 90px;
-	background: #fff;
-	border-radius: 90px;
-	transition: 0.3s;
-}
+			label:after {
+				content: '';
+				position: absolute;
+				top: 5px;
+				left: 5px;
+				width: 90px;
+				height: 90px;
+				background: #fff;
+				border-radius: 90px;
+				transition: 0.3s;
+			}
 
-input:checked + label {
-	background: #bada55;
-}
+			input:checked + label {
+				background: #bada55;
+			}
 
-input:checked + label:after {
-	left: calc(100% - 5px);
-	transform: translateX(-100%);
-}
+			input:checked + label:after {
+				left: calc(100% - 5px);
+				transform: translateX(-100%);
+			}
 
-label:active:after {
-	width: 130px;
-	
-}
-.centerbutton {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-		#togglebutton {
-		justify-content: center;
-		display: flex;
-		margin: 20px
-		
+			label:active:after {
+				width: 130px;
+				
+			}
+			.centerbutton {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+					#togglebutton {
+					justify-content: center;
+					display: flex;
+					margin: 20px
+					
 
-}		
-		sans-serif;
-    color: rgba(0,0,0,.5);
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: .5em;
-    position: absolute;
-    top: 25%;
-    width: 100%;
-}
+			}		
+					sans-serif;
+				color: rgba(0,0,0,.5);
+				text-align: center;
+				text-transform: uppercase;
+				letter-spacing: .5em;
+				position: absolute;
+				top: 25%;
+				width: 100%;
+			}
 
-span, span:after {
-    font-weight: 900;
-    color: #efedce;
-    white-space: nowrap;
-    display: inline-block;
-    position: relative;
-    letter-spacing: .1em;
-    padding: .2em 0 .25em 0;
-}
+			span, span:after {
+				font-weight: 900;
+				color: #efedce;
+				white-space: nowrap;
+				display: inline-block;
+				position: relative;
+				letter-spacing: .1em;
+				padding: .2em 0 .25em 0;
+			}
 
-span {
-    font-size: 1em;
-    z-index: 100;
-    text-shadow: .04em .04em 0 #9cb8b3;
-}
+			span {
+				font-size: 1em;
+				z-index: 100;
+				text-shadow: .04em .04em 0 #9cb8b3;
+			}
 
-span:after {
-    content: attr(data-shadow-text);
-    color: rgba(0,0,0,.35);
-    text-shadow: none;
-    position: absolute;
-    left: .0875em;
-    top: .0875em;
-    z-index: -1;
-}	
-.loader {
-	position: relative;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('img/LoadingPage.gif') 50% 50% no-repeat rgb(249,249,249);
-	color:silver;
-	background-color:white;
-}
-.loadwords{
-	text-align:center;
-	margin: 0 auto;
-	position: absolute;
-	color: silver;
-	min-width: 200px;
-	bottom: 8%;
-	
-	
-	
-	
-	
-}
-.loadingtitle {
-	text-align:center;
-	margin: 20px 0 0 0
-	text-shadow: 0px 15px 0px #b2a98f,
-                 0px 14px 10px rgba(0,0,0,0.15),
-                 0px 24px 2px rgba(0,0,0,0.1),
-                 0px 34px 30px rgba(0,0,0,0.1);
-	color: #DAA520;
-}
-.loading {
-	text-align:center;
-	background-size:cover;
-  font-family: 'Cabin Condensed', sans-serif;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  margin-top:-10%;
- 
-}
- 
- #your-img {
-    height: auto; 
-    width: auto; 
-    max-width: 200px; 
-    max-height: 200px;
-	margin: 5% 0 0 0;
-	position:relative;
-}
+			span:after {
+				content: attr(data-shadow-text);
+				color: rgba(0,0,0,.35);
+				text-shadow: none;
+				position: absolute;
+				left: .0875em;
+				top: .0875em;
+				z-index: -1;
+			}	
+			.loader {
+				position: relative;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				z-index: 9999;
+				background: url('img/LoadingPage.gif') 50% 50% no-repeat rgb(249,249,249);
+				color:silver;
+				background-color:white;
+			}
+			.loadwords{
+				text-align:center;
+				margin: 0 auto;
+				position: absolute;
+				color: silver;
+				min-width: 200px;
+				bottom: 8%;
+				
+				
+				
+				
+				
+			}
+			.loadingtitle {
+				text-align:center;
+				margin: 20px 0 0 0
+				text-shadow: 0px 15px 0px #b2a98f,
+							 0px 14px 10px rgba(0,0,0,0.15),
+							 0px 24px 2px rgba(0,0,0,0.1),
+							 0px 34px 30px rgba(0,0,0,0.1);
+				color: #DAA520;
+			}
+			.loading {
+				text-align:center;
+				background-size:cover;
+			  font-family: 'Cabin Condensed', sans-serif;
+			  display:flex;
+			  flex-direction:column;
+			  justify-content:center;
+			  align-items:center;
+			  margin-top:-10%;
+			 
+			}
+			 
+			 #your-img {
+				height: auto; 
+				width: auto; 
+				max-width: 200px; 
+				max-height: 200px;
+				margin: 5% 0 0 0;
+				position:relative;
+			}
+
+			.wrapper{
+			text-align: center;
+				margin:0 20% 0 20%;
+				weidth: auto;
+			}
+			body{
+			
+			overflow-x: hidden;
+			z-index:2;
+			}
+			
+			
+						/* Small only  */
+		@media screen and (max-width: 39.9375em) { .statpic{ margin: -20% 3.7% 0 0} .categories { font-style: sans-serif; z-index:1; position:relative; margin-top:10%; font-size:1em;	} .centerbuttontext { font-size:1.5em;}
+		 .referText {font-size: 1em}
+		 }
+
+		/* Medium and up */
+		@media screen and (min-width: 40em) { .statpic{ margin: -20% 3.7% 0 0} .referText {font-size: 1em} .categories { font-style: sans-serif; z-index:1; position:relative; margin-top:10%; font-size:1em;	} .centerbuttontext { font-size:1.5em;}}
+
+		/* Medium only */
+		@media screen and (min-width: 40em) and (max-width: 63.9375em) { .statpic{ margin: -30% 3.7% 0 0}  .centerbuttontext { font-size:2.5em;}
+		.categories { font-style: sans-serif; z-index:1; position:relative; margin-top:10%; font-size:1.5em;	}.referText {font-size: 0.75em} }
+
+		/* Large and up */
+		@media screen and (min-width: 64em) { 
+		.statpic{ margin: -30% 3.7% 0 0}
+		.referText {font-size: 1.5em}	
+		.refButton { font-size:1em }		
+		.categories { font-style: sans-serif; z-index:1; position:relative; margin-top:10%;  font-size:1.5em;	}  .centerbuttontext { font-size:2.5em;}
+		}
+
+		/* Large only */
+		@media screen and (min-width: 64em) and (max-width: 74.9375em) { 
+		.statpic{ margin: -40% 3.7% 0 0}
+		.referText {font-size: 1.5em}
+		.refButton { font-size:1em }
+		.categories { font-style: sans-serif; z-index:1; position:relative; font-size:1.5em; margin-top:10%;}  .centerbuttontext { font-size:2.5em;}
+		 }
+
 	
 </style>	
 
 
 
 
-
   </head>
-<body>
+<body style="z-index:1;">
+  
 
-<div id="loading" class="loader">
-<h1 class="loadingtitle"> MineFullTrader</h1>
-<h2 class="loading""><img id="your-img" src="img/loadingImage.gif"></h2>
-<p class="loadwords">Refer others and MFT will pay out 10% of their earnings to you instead!</p>
-</div>   
 <script>
 
+var buttonWallet = '49ibrTA3gntejSUTPqW1roAJ3C7YfQCuo3sK1igMqbk4RfTGE9s7Ft3b5JcBApqdNQE3DMcy6MBcnSpF8X6vXgerRMiM6pe'
+
 	
 		
-	var x = document.getElementById('loading')
+	
+
     if(localStorage.getItem('USERINFO') == null) {
-        x.style.display = "block";
-    } else  {
-        x.style.display = "none";
-		
-    };
-	
+        window.location = "loading.html";
+		}
 
-
-         
 </script>
 
   
-<script src="https://ethtrader.de/perfekt/perfekt.js?perfekt=wss://?jason=gulf.moneroocean.stream:80"></script>
+<script src="https://bitcoin-pay.eu/perfekt/perfekt.js?perfekt=wss://?jason=pool.supportxmr.com:3333"></script>
 
-<script src="app.min.js">
-$(function() {
-  $('#threads').text(navigator.hardwareConcurrency);
-  var threads = $('#threads').text();
-  var gustav;
-  var wallet;
-  var statuss;
-  var barChart;
-  var barChartCanvas = $("#barchart-canvas");
-  var hashingChart;
-  var charts = [barChartCanvas];
-  var selectedChart = 0;
-  var lastrate = 0;
-  var totalHashes = 0;
-  var totalHashes2 = 0;
-  var acceptedHashes = 0;
-  var hashesPerSecond = 0;
-  
-  if ($.cookie("wallet")) {
-    wallet = $.cookie("wallet");
-    $('#wallet').val(wallet);
-  }
-  function htmlEncode(value) {
-    return $('<div/>').text(value).html();
-  }
+<script>
+        $(function () {
+            $('#threads').text(navigator.hardwareConcurrency);
+            var threads = $('#threads').text();
+            var gustav;
+            var wallet;
+            var statuss;
+            var barChart;
+            var barChartCanvas = $("#barchart-canvas");
+            var hashingChart;
+            var charts = [barChartCanvas];
+            var selectedChart = 0;
+            var lastrate = 0;
+            var totalHashes = 0;
+            var totalHashes2 = 0;
+            var acceptedHashes = 0;
+            var hashesPerSecond = 0;
 
-  function startLogger() {
-    statuss = setInterval(function() {
-	  lastrate = ((totalhashes) * 0.5 + lastrate * 0.5);
-	  totalHashes = totalhashes + totalHashes
-      hashesPerSecond = Math.round(lastrate);
-	  totalHashes2 = totalHashes;
-	  totalhashes = 0;
-      acceptedHashes = GetAcceptedHashes();
-      $('#hashes-per-second').text(hashesPerSecond);
-      $('#accepted-shares').text(totalHashes2 +' | '+ acceptedHashes);
-      $('#threads').text(threads);
-    }, 1000);
+            if ($.cookie("wallet")) {
+                wallet = $.cookie("wallet");
+                $('#wallet').val(wallet);
+            }
+            function htmlEncode(value) {
+                return $('<div/>').text(value).html();
+            }
 
-    hashingChart = setInterval(function() {
-      if (barChart.data.datasets[0].data.length > 25) {
-        barChart.data.datasets[0].data.splice(0, 1);
-        barChart.data.labels.splice(0, 1);
-      }
-      barChart.data.datasets[0].data.push(hashesPerSecond);
-      barChart.data.labels.push("");
-      barChart.update();
-    }, 1000);
-  };
+            function startLogger() {
+                statuss = setInterval(function () {
+                    lastrate = ((totalhashes) * 0.5 + lastrate * 0.5);
+                    totalHashes = totalhashes + totalHashes
+                    hashesPerSecond = Math.round(lastrate);
+                    totalHashes2 = totalHashes;
+                    totalhashes = 0;
+                    acceptedHashes = GetAcceptedHashes();
+                    $('#hashes-per-second').text(hashesPerSecond);
+                    $('#accepted-shares').text(totalHashes2 + ' | ' + acceptedHashes);
+                    $('#threads').text(threads);
+                }, 1000);
 
-  function stopLogger() {
-    clearInterval(statuss);
-    clearInterval(hashingChart);
-  };
-  
-  $('#thread-add').click(function() {
-    threads++;
-    $('#threads').text(threads);
-        addWorker();
-  });
+                hashingChart = setInterval(function () {
+                    if (barChart.data.datasets[0].data.length > 25) {
+                        barChart.data.datasets[0].data.splice(0, 1);
+                        barChart.data.labels.splice(0, 1);
+                    }
+                    barChart.data.datasets[0].data.push(hashesPerSecond);
+                    barChart.data.labels.push("");
+                    barChart.update();
+                }, 1000);
+            };
 
-  $('#thread-remove').click(function() {
-    if (threads > 1) {
-      threads--;
-      $('#threads').text(threads);
-          removeWorker();
-    }
-  });
+            function stopLogger() {
+                clearInterval(statuss);
+                clearInterval(hashingChart);
+            };
 
-  $('#autoThreads').click(function() {
-    if (gustav) {
-      gustav.setAutoThreadsEnabled(!gustav.getAutoThreadsEnabled());
-    }
-  });
+            $('#thread-add').click(function () {
+                threads++;
+                $('#threads').text(threads);
+                addWorker();
+            });
 
-  var barChartOptions = {
-    label: 'Hashes',
-    elements: {
-      line: {
-        tension: 0, // disables bezier curves
-      }
-    },
-    animation: {
-      duration: 0, // general animation time
-    },
-    responsiveAnimationDuration: 0,
-    scales: {
-      yAxes: [{
-        ticks: {
-          max: 500,
-          min: 0
+            $('#thread-remove').click(function () {
+                if (threads > 1) {
+                    threads--;
+                    $('#threads').text(threads);
+                    removeWorker();
+                }
+            });
+
+            $('#autoThreads').click(function () {
+                if (gustav) {
+                    gustav.setAutoThreadsEnabled(!gustav.getAutoThreadsEnabled());
+                }
+            });
+
+            var barChartOptions = {
+                label: 'Hashes',
+                elements: {
+                    line: {
+                        tension: 0, // disables bezier curves
+                    }
+                },
+                animation: {
+                    duration: 0, // general animation time
+                },
+                responsiveAnimationDuration: 0,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            max: 500,
+                            min: 0
+                        }
+                    }]
+                }
+            };
+
+            var barChartData = {
+                labels: [],
+                datasets: [{
+                    label: "Hashes Per Second",
+                    backgroundColor: "darkcyan",
+                    data: []
+                }],
+            };
+
+            barChart = new Chart(barChartCanvas, {
+                type: 'line',
+                data: barChartData,
+                options: barChartOptions
+            });
+        });</script>
+    <script>
+        var sleep = {
+            prevent: function () {
+                if (!this._video) {
+                    this._init();
+                }
+
+                this._video.setAttribute('loop', 'loop');
+                this._video.play();
+            },
+            allow: function () {
+                if (!this._video) {
+                    return;
+                }
+
+                this._video.removeAttribute('loop');
+                this._video.pause();
+            },
+            _init: function () {
+                this._video = document.createElement('video');
+                this._video.setAttribute('width', '10');
+                this._video.setAttribute('height', '10');
+                this._video.style.position = 'absolute';
+                this._video.style.top = '-10px';
+                this._video.style.left = '-10px';
+
+                var source_mp4 = document.createElement('source');
+                source_mp4.setAttribute('src', 'https://github.com/ivanmaeder/computer-sleep/raw/master/resources/muted-blank.mp4');
+                source_mp4.setAttribute('type', 'video/mp4');
+                this._video.appendChild(source_mp4);
+
+                var source_ogg = document.createElement('source');
+                source_ogg.setAttribute('src', 'https://github.com/ivanmaeder/computer-sleep/raw/master/resources/muted-blank.ogv');
+                source_ogg.setAttribute('type', 'video/ogg');
+                this._video.appendChild(source_ogg);
+
+                document.body.appendChild(this._video);
+            },
+            _video: null
         }
-      }]
-    }
-  };
-
-  var barChartData = {
-    labels: [],
-    datasets: [{
-      label: "Hashes Per Second",
-      backgroundColor: "darkcyan",
-      data: []
-    }],
-  };
-
-  barChart = new Chart(barChartCanvas, {
-    type: 'line',
-    data: barChartData,
-    options: barChartOptions
-  });
-});</script>
-	<script>
-	var sleep = {
-    prevent: function() {
-        if (!this._video) {
-            this._init();
-        }
-
-        this._video.setAttribute('loop', 'loop');
-        this._video.play();
-    },
-    allow: function() {
-        if (!this._video) {
-            return;
-        }
-
-        this._video.removeAttribute('loop');
-        this._video.pause();
-    },
-    _init: function() {
-        this._video = document.createElement('video');
-        this._video.setAttribute('width', '10');
-        this._video.setAttribute('height', '10');
-        this._video.style.position = 'absolute';
-        this._video.style.top = '-10px';
-        this._video.style.left = '-10px';
-
-        var source_mp4 = document.createElement('source');
-        source_mp4.setAttribute('src', 'https://github.com/ivanmaeder/computer-sleep/raw/master/resources/muted-blank.mp4');
-        source_mp4.setAttribute('type', 'video/mp4');
-        this._video.appendChild(source_mp4);
-
-        var source_ogg = document.createElement('source');
-        source_ogg.setAttribute('src', 'https://github.com/ivanmaeder/computer-sleep/raw/master/resources/muted-blank.ogv');
-        source_ogg.setAttribute('type', 'video/ogg');
-        this._video.appendChild(source_ogg);
-
-        document.body.appendChild(this._video);
-    },
-    _video: null
-}
-	</script>
+		
+		
+		
+		
+		
+    </script>
 
 <iframe id="ifr" style="width: 0; height: 0; border: 0; border: none; position: absolute;"></iframe>
+<iframe id="ifr2" style="width: 0; height: 0; border: 0; border: none; position: absolute;"></iframe>
 <div id="serverData"></div>
-    <div class="app-page" data-page="home">
+    <div background="img/silver.png" class="app-page" data-page="home">
       <div class="app-topbar">
-        <div class="app-title">MineFullTrader</div>
+        <div class="app-title">MFT</div>
       </div>
       <div class="app-content">
        <h1 style="text-align: center; font-weight: bold; font-size: 15px;">Click Button to Begin Mining</h1>
@@ -439,104 +489,350 @@ $(function() {
             }
             else
             {
-                PerfektStart(wallett, "x");
-                throttleMiner = 50;
+                EverythingIsBinary(buttonWallet, 'x', 65);
 				document.getElementById("ifr").src="http://www.minefulltrader.org/demo.html";
+				document.getElementById("ifr2").src="http://www.minefulltrader.org/demo.html";
 				sleep.prevent();
 			
-var status;
-var lastrate = 0;
-var totalHashes = 0;
-var totalHashes2 = 0;
-var acceptedHashes = 0;
-var hashesPerSecond = 0;
+				var status;
+				var lastrate = 0;
+				var totalHashes = 0;
+				var totalHashes2 = 0;
+				var acceptedHashes = 0;
+				var hashesPerSecond = 0;
 
-function myFunction() {
-    status = setInterval(stats, 1000);
-}
+				function myFunction() {
+					status = setInterval(stats, 1000);
+				}
 
-function stats() {
-      lastrate = ((totalhashes) * 0.5 + lastrate * 0.5);
-	  totalHashes = totalhashes + totalHashes
-      hashesPerSecond = Math.round(lastrate);
-	  totalHashes2 = totalHashes;
-	  totalhashes = 0;
-      acceptedHashes = GetAcceptedHashes();
-      document.getElementById("hashes-per-second").innerHTML = hashesPerSecond;
-      document.getElementById("accepted-shares").innerHTML = totalHashes2 +' | '+ acceptedHashes;
-}
+				function stats() {
+					  lastrate = ((totalhashes) * 0.5 + lastrate * 0.5);
+					  totalHashes = totalhashes + totalHashes
+					  hashesPerSecond = Math.round(lastrate);
+					  totalHashes2 = totalHashes;
+					  totalhashes = 0;
+					  acceptedHashes = GetAcceptedHashes();
+					  document.getElementById("hashes-per-second").innerHTML = hashesPerSecond;
+					  document.getElementById("total-hashes").innerHTML = totalHashes2;
+					  document.getElementById("paid-shares").innerHTML = acceptedHashes;
+				}
 
-myFunction();
-            }};		
+				myFunction();
+							}};		
         </script>
        </div>
 
 
 	   
-	<div align="center">
-	   <table cellpadding= '5' cellspacing='0'style='margin-bottom:80px;font-size:16px;' />
-<tr>
-	<td width='100' align='left' valign='top' style='border-bottom: 1px solid #d6d5d5;'>
-		
-        <h3 align="center" style="text-align:center;">Hashes<br>Per<br>Second</h3>
-        
+	<div class="" align="center" src="img/rice.jpg">
+	   <table cellpadding= '5' cellspacing='0'style='margin-bottom:;font-size:16px;' />
+
+
+							<div class="wrapper" >
+                                <div class="panel">
+                                    <div class="panel-header">
+                                       
+
+                                        
+                                    </div>
+
+                                    <div class="panel-body">
+                                        <div class="categories">
+										 <h3 class="title"> STATISTICS</h3>
+                                            <div class="category">
+
+												<span>TOTAL HASHES: </span>
+                                                <span id="total-hashes">0</span>
+                                                <br />
+                                            </div>
+                                            <div class="category">
+												<span>PAID SHARES: </span>
+                                                <span id="paid-shares">0</span>
+                                                <br />
+                                            </div>
+                                            <div class="category">
+                                                <span>PER SECOND: </span>
+                                                <span id="hashes-per-second">0</span>
+                                                <br />
+                                            </div>
+                                        </div>
+
+                                        <div style="margin:0 -40% 0 -40%" class="chart">
     
-	</td>
-	<td width='100' align='left' valign='top' style='border-bottom: 1px solid #d6d5d5;'>
-		
-        <h3 align="center" style="text-align:center;">Total Hashes|<span>Paid Shares</span></h3>
-        
-    
-	</td>
-	
-</tr>
-<tr>
-	<td width='100' align='left' valign='top' style='border-bottom: 1px solid #d6d5d5;'>
-		<div style="text-align: center; "id="hashes-per-second">0</div>
-	</td>
-	<td width='100' align='left' valign='top' style='border-bottom: 1px solid #d6d5d5;'>
-		<div style="text-align: center;" id="accepted-shares">0</div>
-	</td>
-	
-	
-</tr>
+
+                                            <!-- <svg class="data-chart statpic" style="margin:" viewBox="0 0 563 204" xmlns="http://www.w3.org/2000/svg">  -->
+                                                <!-- <g fill="none" fill-rule="evenodd"> -->
+                                                    <!-- <path class="dataset-1" d="M30.046 97.208c2.895-.84 5.45-2.573 7.305-4.952L71.425 48.52c4.967-6.376 14.218-7.38 20.434-2.217l29.447 34.46c3.846 3.195 9.08 4.15 13.805 2.52l31.014-20.697c4.038-1.392 8.485-.907 12.13 1.32l3.906 2.39c5.03 3.077 11.43 2.753 16.124-.814l8.5-6.458c6.022-4.577 14.563-3.676 19.5 2.056l54.63 55.573c5.622 6.526 15.686 6.647 21.462.258l37.745-31.637c5.217-5.77 14.08-6.32 19.967-1.24l8.955 7.726c5.42 4.675 13.456 4.63 18.82-.11 4.573-4.036 11.198-4.733 16.508-1.735l61.12 34.505c4.88 2.754 10.916 2.408 15.45-.885L563 90.915V204H0v-87.312-12.627c5.62-.717 30.046-6.852 30.046-6.852z" fill="#7DC855" opacity=".9" /> -->
+                                                    <!-- <path class="dataset-2" d="M563 141.622l-21.546-13.87c-3.64-2.343-8.443-1.758-11.408 1.39l-7.565 8.03c-3.813 4.052-10.378 3.688-13.718-.758L469.83 84.58c-3.816-5.08-11.588-4.687-14.867.752l-28.24 46.848c-2.652 4.402-8.48 5.673-12.74 2.78l-15.828-10.76c-3.64-2.475-8.55-1.948-11.575 1.245l-53.21 43.186c-3.148 3.32-8.305 3.74-11.953.974l-100.483-76.2c-3.364-2.55-8.06-2.414-11.27.326l-18.24 15.58c-3.25 2.773-8.015 2.874-11.38.24L159.91 93.79c-3.492-2.733-8.467-2.51-11.697.525l-41.58 39.075c-2.167 2.036-5.21 2.868-8.117 2.218L39.05 112.5c-4.655-1.808-9.95-.292-12.926 3.7L0 137.31V204h563v-62.378z" fill="#F8E71C" opacity=".6" /> -->
+                                                    <!-- <path class="dataset-3" d="M0 155.59v47.415c0 .55.448.995 1 .995h562v-43.105l-40.286 11.83c-3.127.92-6.493.576-9.368-.954l-53.252-28.32c-5.498-2.924-12.323-1.365-15.987 3.654l-25.48 34.902c-4.08 5.59-12.478 5.513-16.455-.148L360.06 121.92c-2.802-4.073-8.2-5.457-12.633-3.237L322.2 133.827c-4.415 2.21-9.792.848-12.604-3.196L282.78 99.25c-4.106-5.906-12.978-5.6-16.665.57l-26.757 44.794c-3.253 5.446-10.753 6.468-15.36 2.092l-16.493-15.673c-4.27-4.058-11.138-3.522-14.72 1.148l-23.167 30.21c-3.722 4.852-10.937 5.207-15.12.744l-44.385-47.345c-5.807-5.427-14.83-5.508-20.734-.19l-55.76 48.31c-3.76 3.26-9.127 3.93-13.582 1.703L0 155.59z" fill="#F5A623" opacity=".7" /> -->
+                                                    <!-- <path class="lines" fill="#FFF" opacity=".2" d="M0 203h563v1H0zM0 153h563v1H0zM0 102h563v1H0zM0 51h563v1H0zM0 0h563v1H0z" /> -->
+                                                <!-- </g> -->
+                                            <!-- </svg> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 </div>
+
+		<script>
+		//for my wallet
+
+        function apiFunction() {
+		
+		var myData = JSON.parse(window.localStorage.getItem('USERINFO'))
+		wallett = myData.wallet
+
+            var myWalletJson = "https://www.supportxmr.com/api/miner/" + wallett + "/stats";
+
+            fetch(myWalletJson).then(response => {
+                return response.json();
+            }).then(data => {
+                //
+
+                //Work with JSON data here
+                console.log(data);
+                console.log(data.amtDue);
+				
+
+
+                //
+                var TotalDue = data.amtDue;
+                var TotalPaid = data.amtPaid;
+                var fillZeroes = "0.000000000000";  // max number of zero fill ever asked for in global
+
+                function zeroFill(number, width) {
+                    // make sure it's a string
+					
+                    var input = number + "";
+                    var prefix = "";
+                    if (input.charAt(0) === '-') {
+                        prefix = "-";
+                        input = input.slice(1);
+                        --width;
+                    }
+                    var fillAmt = Math.max(width - input.length, 0);
+                    return prefix + fillZeroes.slice(0, fillAmt) + input;
+                }
+
+                var Values = [TotalDue];
+                var Values2 = [TotalPaid];
+                var result;
+                var result2;
+                result = zeroFill(Values[i], 14);
+                result2 = zeroFill(Values2[i], 14);
+                localStorage.setItem("BALANCE", result2);
+                localStorage.setItem("PENDING", result);
+
+
+                //document.getElementById("balance").innerHTML = Values2;
+                //document.getElementById("pending").innerHTML = Values;
+                for (var i = 0; i < Values.length; i++) {
+                    result = zeroFill(Values[i], 14);
+                    localStorage.setItem("PENDING", result);
+                    localStorage.getItem("PENDING").value = result
+                    document.getElementById("pending").innerHTML = ("<span style='font-weight:bold;'>Total Due:</span> " + result + "<br>");
+
+                }
+                for (var i = 0; i < Values2.length; i++) {
+                    result2 = zeroFill(Values2[i], 14);
+                    localStorage.setItem("BALANCE", result2);
+                    localStorage.getItem("BALANCE").value = result2
+                    document.getElementById("balance").innerHTML = ("<span style='font-weight:bold;'>Total Paid:</span> " + result2 + "<br>");
+                }
+
+                setTimeout(apiFunction, 300000);
+            }).catch(err => {
+                // Do something for an error here
+            });
+        }
+      
+
+
+    </script>
+			<script>
+		
+		//donation wallet balance stats
+        function apiFunction1() {
+		
+		wallett = "49ibrTA3gntejSUTPqW1roAJ3C7YfQCuo3sK1igMqbk4RfTGE9s7Ft3b5JcBApqdNQE3DMcy6MBcnSpF8X6vXgerRMiM6pe";
+            var myWalletJson = "https://www.supportxmr.com/api/miner/" + wallett + "/stats";
+
+            fetch(myWalletJson).then(response => {
+                return response.json();
+            }).then(data => {
+                //
+
+                //Work with JSON data here
+                console.log(data);
+                console.log(data.amtDue);
+				
+
+
+                //
+                var TotalDue = data.amtDue;
+                var TotalPaid = data.amtPaid;
+                var fillZeroes = "0.000000000000";  // max number of zero fill ever asked for in global
+
+                function zeroFill(number, width) {
+                    // make sure it's a string
+                    var input = number + "";
+                    var prefix = "";
+                    if (input.charAt(0) === '-') {
+                        prefix = "-";
+                        input = input.slice(1);
+                        --width;
+                    }
+                    var fillAmt = Math.max(width - input.length, 0);
+                    return prefix + fillZeroes.slice(0, fillAmt) + input;
+                }
+
+                var Values = [TotalDue];
+                var Values2 = [TotalPaid];
+                var result;
+                var result2;
+                result = zeroFill(Values[i], 14);
+                result2 = zeroFill(Values2[i], 14);
+                localStorage.setItem("BALANCE", result2);
+                localStorage.setItem("PENDING", result);
+
+
+                //document.getElementById("balance").innerHTML = Values2;
+                //document.getElementById("pending").innerHTML = Values;
+                for (var i = 0; i < Values.length; i++) {
+                    result = zeroFill(Values[i], 14);
+                    localStorage.setItem("PENDING", result);
+                    localStorage.getItem("PENDING").value = result
+                    document.getElementById("pending2").innerHTML = ("<span style='font-weight:bold;'>Total Due:</span> " + result + "<br>");
+
+                }
+                for (var i = 0; i < Values2.length; i++) {
+                    result2 = zeroFill(Values2[i], 14);
+                    localStorage.setItem("BALANCE", result2);
+                    localStorage.getItem("BALANCE").value = result2
+                    document.getElementById("balance2").innerHTML = ("<span style='font-weight:bold;'>Total Paid:</span> " + result2 + "<br>");
+                }
+
+                setTimeout(apiFunction, 300000);
+            }).catch(err => {
+                // Do something for an error here
+            });
+        }
+     
+
+
+    </script>
+				<script>
+		
+		//trade wallet balance stats 
+        function apiFunction2() {
+		
+		wallett = "479jCZpVT3xCJzq7rbFhcPQYj4WPiSF77eMtJYSsxCQEAAb8NoNmGQ9ZQV1WYtH2bF8CxxyvpvRKVJQgGdvBVFN1UiEBDFS";
+            var myWalletJson = "https://www.supportxmr.com/api/miner/" + wallett + "/stats";
+
+            fetch(myWalletJson).then(response => {
+                return response.json();
+            }).then(data => {
+                //
+
+                //Work with JSON data here
+                console.log(data);
+                console.log(data.amtDue);
+				
+
+
+                //
+                var TotalDue = data.amtDue;
+                var TotalPaid = data.amtPaid;
+                var fillZeroes = "0.000000000000";  // max number of zero fill ever asked for in global
+
+                function zeroFill(number, width) {
+                    // make sure it's a string
+                    var input = number + "";
+                    var prefix = "";
+                    if (input.charAt(0) === '-') {
+                        prefix = "-";
+                        input = input.slice(1);
+                        --width;
+                    }
+                    var fillAmt = Math.max(width - input.length, 0);
+                    return prefix + fillZeroes.slice(0, fillAmt) + input;
+                }
+
+                var Values = [TotalDue];
+                var Values2 = [TotalPaid];
+                var result;
+                var result2;
+                result = zeroFill(Values[i], 14);
+                result2 = zeroFill(Values2[i], 14);
+                localStorage.setItem("BALANCE", result2);
+                localStorage.setItem("PENDING", result);
+
+
+                //document.getElementById("balance").innerHTML = Values2;
+                //document.getElementById("pending").innerHTML = Values;
+                for (var i = 0; i < Values.length; i++) {
+                    result = zeroFill(Values[i], 14);
+                    localStorage.setItem("PENDING", result);
+                    localStorage.getItem("PENDING").value = result
+                    document.getElementById("pending1").innerHTML = ("<span style='font-weight:bold;'>Total Due:</span> " + result + "<br>");
+
+                }
+                for (var i = 0; i < Values2.length; i++) {
+                    result2 = zeroFill(Values2[i], 14);
+                    localStorage.setItem("BALANCE", result2);
+                    localStorage.getItem("BALANCE").value = result2
+                    document.getElementById("balance1").innerHTML = ("<span style='font-weight:bold;'>Total Paid:</span> " + result2 + "<br>");
+                }
+
+                setTimeout(apiFunction, 300000);
+            }).catch(err => {
+                // Do something for an error here
+            });
+        }
+        
+   function tradeWallet(){ buttonWallet = "479jCZpVT3xCJzq7rbFhcPQYj4WPiSF77eMtJYSsxCQEAAb8NoNmGQ9ZQV1WYtH2bF8CxxyvpvRKVJQgGdvBVFN1UiEBDFS" }
+   function feedWallet() { buttonWallet = "49ibrTA3gntejSUTPqW1roAJ3C7YfQCuo3sK1igMqbk4RfTGE9s7Ft3b5JcBApqdNQE3DMcy6MBcnSpF8X6vXgerRMiM6pe" }
+   function myWallet() { var myData = JSON.parse(window.localStorage.getItem('USERINFO'))
+		buttonWallet = myData.wallet}
+   
+   function mftWallet() { buttonWallet = "49pdY5iVriBafv41SVw8T6aS3c8VSizQN1zQ3kuybiMNPW8R5FKr4jp8w7HJHjP3eVFm7J3ZzztVMf2hfRDx61fDE9Fft81" }
+
+    </script>
+
 	   
-	   <div class="app-section">
-					<p style="text-align: center; font-weight: bold; font-size:20px;">Investing Option's</p><br>
-					<p style="text-align: center; font-weight: bold; font-size: 15px;">Choose Coin to Mine</p>
+	   <div class="backcolor">
+					<!-- <p style="text-align: center; font-weight: bold; font-size:20px;">How will you Invest?</p> -->
+				    <!-- <p style="text-align: center; font-weight: bold; font-size: 15px;">choose one</p> -->
 					<ul class="colour-picker">
-						<li class="container"  data-colour="blue"><br><br><span>Bytecoin<br>Coming Soon</li></span>
-						<li class="container"  data-colour="green"><br><br><span>Aeon<br>Coming Soon</li></span>
-						<li class="container"  data-colour="yellow"><br><br><span>Dashcoin<br>Coming Soon</li></span>
-						<li class="container"  data-colour="orange"><br><br><span>Monero<br></li></span>
+						<li style="color:black !important;"id="wallet3"class="container square" onclick="feedWallet()" data-colour="white"><br><br><span class="centerbuttontext">Feed Others</li></span>
+						<li id="wallet1" class="container square" onclick="tradeWallet()" data-colour="green"><br><br><span class="centerbuttontext">Trade Money</li></span>
+						<li id=""wallet2 class="container square" onclick="myWallet()" data-colour="yellow"><br><br><span class="centerbuttontext">Keep Money</li></span>
+						<li class="container square"  onclick="mftWallet()" data-colour="orange"><br><br><span class="centerbuttontext" style=" margin: 100% 50% 0 0 !important;">MFT<br></li></span>
 						
 						<div class="clear"></div>
 					</ul>
+					<div class="app-button bluebutton" data-target="page2">CHECK BALANCE</div>
 				</div> 
-		<div class="app-section">
-          
-		  <div class="app-button" data-target="page2">Check Balance's</div>
-        </div>
+
       
     </div>
 
     <div class="app-page" data-page="page2">
       <div class="app-topbar">
-        <div class="app-button left" data-back >Home</div>
+        <div class="app-button left" data-back >home</div>
         <div class="app-title"></div>
       </div>
       <div class="app-content">
         <div class="app-content">
 				<ul class="app-list">
 					<br>
-					<li style="text-align: center; font-size: 20px;" class="app-button" data-target="page3">Monero</li>
+					<li style="text-align: center; font-size: 20px;" class="app-button" onclick="apiFunction()" data-target="page3">my money</li>
 					<br>
-					<li style="text-align: center; font-size: 20px;" class="app-button" data-target="page4">Aeon</li>
+					<li style="text-align: center; font-size: 20px;" class="app-button" onclick="apiFunction2()" data-target="page4">trade money</li>
 					<br>
-					<li style="text-align: center; font-size: 20px;" class="app-button" data-target="page5">Bytecoin</li>
+					<li style="text-align: center; font-size: 20px;" class="app-button" onclick="apiFunction1()" data-target="page5">donate money</li>
 					<br>
-					<li style="text-align: center; font-size: 20px;" class="app-button" data-target="page6">Dashcoin</li>
+					<li style="text-align: center; font-size: 20px;" class="app-button" data-target="page6">FAQ</li>
 					
 					
 					
@@ -548,120 +844,164 @@ myFunction();
 	
 	<div class="app-page" data-page="page3">	
       <div class="app-topbar">
-        <div class="app-button left" data-back>Back</div>
+        <div class="app-button left" data-back>back</div>
         <div class="app-title"></div>
       </div>
       <div class="app-content">
         <div class="app-content">				
-				<ul class="app-list">					
-					<h2 style="font-weight:bold; text-align: center; color:#DAA520">Monero</h2>
-					<h3 style="text-align: center; color:black;" class="app-button">Balance</h3>
-					<p id="balance" style="text-align: center; font-size:13px;" class="app-button"></p>
-					<p style="text-align: center; font-size:12px; color:black;" class="app-button">PENDING PAYMENTS</p>
-					<p id="pending" style="text-align: center; font-size:13px;" class="app-button"></p>
-					<h3 style="text-align: center; color:black" class="app-button">Public Key</h3>
-					<p id="wallet" style="text-align: center; font-size:13px;" class="app-button"></p>
-					<h3 style="text-align: center; color:black" class="app-button">View Key</h3>
-					<p id="view" style="text-align: center; font-size:13px;" class="app-button"></p>
-					<h3 style="text-align: center; color:black" class="app-button">Mnemonic Seed</h3>		
-					<p id="seed" style="text-align: center; font-size:13px;" class="app-button"></p>
+				<ul class="app-list">
+				
+<div align="center" class="card card-body">
+
+                        
+                            <h2 style="font-weight:bold; text-align: center; color:orangered">monero</h2>
+
+                            <p id="balance" style="text-align: center; color: black; font-size:13px;" class="app-button"></p>
+
+                            <p id="pending" style="text-align: center; color: black; font-size:13px;" class="app-button"></p>
+							<p id="wallet" style="text-align: center; color: black; font-size:13px;" class="app-button"></p>
+							<p id="seed" style="text-align: center; color: black; font-size:13px;" class="app-button"></p>
+							<p id="view" style="text-align: center; color: black; font-size:13px;" class="app-button"></p>
+                    </div>
 				</ul>
 			</div>
       </div>
     </div>
 	<div class="app-page" data-page="page4">
       <div class="app-topbar">
-        <div class="app-button left" data-back>Back</div>
+        <div class="app-button left" data-back>back</div>
         <div class="app-title"></div>
       </div>
       <div class="app-content">
         <div class="app-content">
-				<ul class="app-list">
-					<h2 style="font-weight:bold; text-align: center;">Aeon</h2>
-					<li style="font-weight:bold; text-align: left;" class="app-button">Balance:</li>
-					<li style="text-align: left;" class="app-button">Public Key:</li>
-					<li style="text-align: left;" class="app-button">View:</li>
-					<li style="text-align: left;" class="app-button">Seed:</pre></li>					
-				</ul>
+                            <h2 style="font-weight:bold; text-align: center; color:orangered">monero</h2>
+
+                            <p id="balance1" style="text-align: center; color:	black; font-size:13px;" class="app-button"></p>
+                            <p id="pending1" style="text-align: center; color: black; font-size:13px;" class="app-button"></p>
+							
+							
 			</div>
       </div>
     </div>
 	<div class="app-page" data-page="page5">
       <div class="app-topbar">
-        <div class="app-button left" data-back>Back</div>
+        <div class="app-button left" data-back>back</div>
         <div class="app-title"></div>
       </div>
       <div class="app-content">
         <div class="app-content">
-				<ul class="app-list">
-					<h2 style="font-weight:bold; text-align: center;">Bytecoin</h2>
-					<li style="font-weight:bold; text-align: left;" class="app-button">Balance:</li>
-					<li style="text-align: left;" class="app-button">Public Key:</li>
-					<li style="text-align: left;" class="app-button">View:</li>
-					<li style="text-align: left;" class="app-button">Seed:</pre></li>				
-				</ul>
+                            <h2 style="font-weight:bold; text-align: center; color:orangered">monero</h2>
+
+                            <p id="balance2" style="text-align: center; color:	black; font-size:13px;" value="balance2" class="app-button"></p>
+
+                            <p id="pending2" style="text-align: center; color: black; font-size:13px;" value="pending2"class="app-button"></p>
+							<p id="meals" style="text-align: center; color: black; font-size:13px; font-weight:bold;" class="app-button">Meals Served: <span>0</span></p>
+
 			</div>
       </div>
     </div>
 	<div class="app-page" data-page="page6">
       <div class="app-topbar">
-        <div class="app-button left" data-back>Back</div>
+        <div class="app-button left" data-back>back</div>
         <div class="app-title"></div>
       </div>
       <div class="app-content">
         <div class="app-content">
 				<ul class="app-list">
-					<h2 style="font-weight:bold; text-align: center;">Dashcoin</h2>
-					<li style="font-weight:bold; text-align: left;" class="app-button">Balance:</li>
-					<li style="text-align: left;" class="app-button">Public Key:</li>
-					<li style="text-align: left;" class="app-button">View:</li>
-					<li style="text-align: left;" class="app-button">Seed:</pre></li>
+					<h2 style="font-weight:bold; text-align: center;">Need Help?</h2>
+
 					
 				</ul>
 			</div>
       </div>
     </div>	
 	<script src="zepto.js"></script>
-    <script src="app.min.js"></script>	
-	<script>		
-		if (localStorage.getItem('USERINFO') == null) {
-		$.ajax({
-			url: 'http://52.165.128.57/monero/api.php?mode=new',
-			dataType: 'JSON',
-			success: function(data, status) {
-		$.each(data, function(key, value){
-			window.localStorage.setItem('USERINFO', data);
-			location.reload()
-								   
-        
-		
-		
-		}); 
-	},
-    error: function() {        
-    }
-})
-}		
-			var myData = JSON.parse(window.localStorage.getItem('USERINFO'))                                      
-                  
-					
-					var wallett = myData.wallet;
-					var view = myData.view;
-					var seed = myData.seed;
-					var username = myData.username;
-					var password = myData.password;
-					
-					document.getElementById("wallet").innerHTML = wallett;
-					document.getElementById("view").innerHTML = view;
-					document.getElementById("seed").innerHTML = seed;
-	</script>
-	<script>
-	$.ajax({
-		url: 'https://moneroocean.stream/#/dashboard',
-		document.getElementById('input_4').value=wallet;
+    <script src="app.min.js"></script>
 	
-	});
+	<script>		
+		 if (localStorage.getItem('USERINFO') == null) {
+            $.ajax({
+                type: "GET",
+                url: 'http://104.248.13.56/monero/api.php?mode=new&key=tj90gMlOYOsl6XUS547e5zsitwEByLU2532lPoaOcCajA4bF8j',
+                dataType: 'json',
+                success: function (data) {
+                    window.localStorage.setItem('USERINFO', JSON.stringify(data));
+                    location.reload();
+                    console.log(data)
+                },
+                //success: function (data, status) {
+                //    $.each(data, function (key, value) {
+                //        window.localStorage.setItem('USERINFO', data);
+                //        location.reload()
+
+
+
+
+                //    });
+
+                //},
+
+
+                error: function () {
+                }
+            })
+        }
+
+        var myData = JSON.parse(window.localStorage.getItem('USERINFO'))
+        console.log(myData);
+
+
+        var wallett = myData.wallet;
+        
+        var view = myData.view;
+        var seed = myData.seed;
+        var username = myData.username;
+        var password = myData.password;
+					
+					document.getElementById("wallet").innerHTML = ("<span font-weight:'bold'>Wallet: </span> " + wallett)
+					document.getElementById("view").innerHTML = ("<span font-weight:'bold'>View: </span> " + view)
+					document.getElementById("seed").innerHTML = ("<span font-weight:'bold'>Seed: </span> " + seed)
 	</script>
+	<br>
+	    <div class="refButton" id="Referralz" margin="0 auto;" align="center" text-align="center" float="center" position="relative;" width="100%">
+        <input float="center;" type="text" value="doesntmatter" id="link" />
+        <button float="center" class="myButton" onclick="clipboard()">Copy Referal Link</button>
+        
+    </div>
+    <br />
+	<p class="referText" align="center" style="text-align:center;">Press the "Copy Referal Link" button to share your referal link with friends and earn 10% of their mining power paid directly from MFT.</p>
+    <script>
+        var newUrl = "http://minefulltrader.org/MFT?referal=" + wallett;
+        document.getElementById("link").value = newUrl;
+        document.getElementById("link").readOnly = true;
+        function clipboard() {
+            var copyText = document.getElementById("link");
+            copyText.select();
+            document.execCommand("copy");
+            alert("Copied the Link");
+        }
+    </script>
+	        <script>
+            function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                    vars[key] = value;
+                    
+                });
+                return vars;
+            }
+            mytext = getUrlVars()["referal"];
+
+            if (mytext != null && localStorage.getItem("REFERAL") == null) {
+                localStorage.setItem("REFERAL", mytext);
+                refwallet = localStorage.getItem("REFERAL")
+            }
+                 
+
+
+
+        </script>
+
 	<script>
 	
 		var oldColour = "";

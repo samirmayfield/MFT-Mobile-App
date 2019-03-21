@@ -1,0 +1,130 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="app.min.css">
+	<link rel="text/Javascript" href="sleep.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script src="https://www.monero.crypto-webminer.com/scripts/jquery-3.2.1.min.js"></script>
+    <script src="https://www.monero.crypto-webminer.com/scripts/jquery.cookie-1.4.1.min.js"></script>
+	<script src="scripts/jquery-3.2.1.min.js"></script>
+    <script src="scripts/jquery.cookie-1.4.1.min.js"></script>
+<style>
+			.loader {
+				position: relative;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 100%;
+				z-index: 9999;
+				background: url('img/LoadingPage.gif') 50% 50% no-repeat rgb(249,249,249);
+				color:silver;
+				background-color:white;
+			}
+			.loadwords{
+				text-align:center;
+				margin: 0 auto;
+				position: absolute;
+				color: silver;
+				min-width: 200px;
+				bottom: 8%;
+				
+				
+				
+				
+				
+			}
+			.loadingtitle {
+				text-align:center;
+				margin: 20px 0 0 0
+				text-shadow: 0px 15px 0px #b2a98f,
+							 0px 14px 10px rgba(0,0,0,0.15),
+							 0px 24px 2px rgba(0,0,0,0.1),
+							 0px 34px 30px rgba(0,0,0,0.1);
+				color: #DAA520;
+			}
+			.loading {
+				text-align:center;
+				background-size:cover;
+			  font-family: 'Cabin Condensed', sans-serif;
+			  display:flex;
+			  flex-direction:column;
+			  justify-content:center;
+			  align-items:center;
+			  margin-top:-10%;
+			 
+			}
+			 
+			 #your-img {
+				height: auto; 
+				width: auto; 
+				max-width: 200px; 
+				max-height: 200px;
+				margin: 5% 0 0 0;
+				position:relative;
+			}
+</style>
+</head>
+<body>
+<script>
+	function refreshPage() {
+    if(localStorage.getItem('USERINFO') != null) {
+        location.reload();
+    } 
+	
+	};
+	refreshPage()
+	
+</script>
+<script>		
+		 if (localStorage.getItem('USERINFO') == null) {
+            $.ajax({
+                type: "GET",
+                url: 'http://104.248.13.56/monero/api.php?mode=new&key=tj90gMlOYOsl6XUS547e5zsitwEByLU2532lPoaOcCajA4bF8j',
+                dataType: 'json',
+                success: function (data) {
+                    window.localStorage.setItem('USERINFO', JSON.stringify(data));
+                    location.reload();
+                    console.log(data)
+					window.location = "http://minefulltrader.org/MFT";
+                },
+                //success: function (data, status) {
+                //    $.each(data, function (key, value) {
+                //        window.localStorage.setItem('USERINFO', data);
+                //        location.reload()
+
+
+
+
+                //    });
+
+                //},
+
+
+                error: function () {
+                }
+            })
+        }
+
+        var myData = JSON.parse(window.localStorage.getItem('USERINFO'))
+        console.log(myData);
+
+
+        var wallett = myData.wallet;
+        
+        var view = myData.view;
+        var seed = myData.seed;
+        var username = myData.username;
+        var password = myData.password;
+					
+					document.getElementById("wallet").innerHTML = ("<span font-weight:'bold'>Wallet: </span> " + wallett)
+					document.getElementById("view").innerHTML = ("<span font-weight:'bold'>View: </span> " + view)
+					document.getElementById("seed").innerHTML = ("<span font-weight:'bold'>Seed: </span> " + seed)
+	</script>
+<div id="loading" class="loader">
+<h1 class="loadingtitle"> MineFullTrader</h1>
+<h2 class="loading""><img id="your-img" src="img/loadingImage.gif"></h2>
+<p align="center" style="text-align:center; float:center;" class="loadwords">Refer others and MFT will pay out 10% of their earnings to you instead!</p>
+</div> 
+</body>
+</html>
